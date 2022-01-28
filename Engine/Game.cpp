@@ -31,7 +31,7 @@ Game::Game(MainWindow& wnd)
 	loc_xDist(0, brd.GetGridWidth()),
 	loc_yDist(0, brd.GetGridHeight()),
 
-	snake({ 18, 13 })
+	snake({ 17, 11 })
 
 {
 	for (int i = 0; i < maxApples; ++i)
@@ -115,6 +115,13 @@ void Game::UpdateModel()
 		currentTick = secondsPerTick;
 	}
 }
+
+//void Game::Restart(int& nSegments)
+//{
+//	  secondsPerTick = 0.5f;
+//	  nSegments = 1;
+//}
+
 void Game::ComposeFrame()
 {
 
@@ -124,6 +131,7 @@ void Game::ComposeFrame()
 		apple[currentApples].Draw(brd);
 		snake.Draw(brd);
 	}
+
 
 	// Map Loading
 
@@ -153,5 +161,18 @@ void Game::ComposeFrame()
 	if (brd.GetGameOver())
 	{
 		sprite.DrawGameOver(360, 240, gfx);
+		if (wnd.kbd.KeyIsPressed(VK_RETURN))
+		{
+			isGameRestart = true;
+		}
+	}
+	if (isGameRestart)
+	{
+		secondsPerTick = maxSecondsPerTick;
+		++currentApples;
+		delta_loc = { 1, 0 };
+		snake.RestartInit({ 17, 11 });
+		brd.SetGameOver(false);
+		isGameRestart = false;
 	}
 }

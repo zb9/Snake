@@ -24,6 +24,13 @@ void Snake::Grow()
 	}
 }
 
+void Snake::RestartInit(Location loc)
+{
+	nSegments = 1;
+	segments[0].InitHead(loc);
+}
+
+
 bool Snake::collisionTest(Board& brd, Apple& apple)
 {
 	for (int i = 1; i < nSegments; ++i)

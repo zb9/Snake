@@ -38,6 +38,7 @@ public:
 	Game( const Game& ) = delete;
 	Game& operator=( const Game& ) = delete;
 	void Go();
+
 private:
 	void ComposeFrame();
 	void UpdateModel();
@@ -60,18 +61,22 @@ private:
 	std::uniform_int_distribution<int> loc_xDist;
 	std::uniform_int_distribution<int> loc_yDist;
 
+	Snake snake;
+
+	static constexpr int maxApples = 790;
+	int currentApples = 0;
+
+	Apple apple[maxApples];
+
+	static constexpr float  maxSecondsPerTick = 0.5f;
 	float secondsPerTick = 0.5f;
 	float currentTick = secondsPerTick;
 
-	static constexpr int maxApples = 790; 
-	int currentApples = 0;
+	bool isGameRestart = false;
 
 	// 0 - Up , 1 - Right, 2 - Down, 3 - Right
 	int currentDirection = 0;
-
 	bool motionDbn = false;
 
-	Snake snake;
-	Apple apple[maxApples];
 	/********************************/
 };

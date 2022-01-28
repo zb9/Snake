@@ -2,6 +2,7 @@
 #include "Board.h"
 #include "Keyboard.h"
 #include "Apple.h"
+#include "Snake.h"
 
 class Snake
 {
@@ -26,6 +27,7 @@ public:
 	Snake(const Location& loc);
 	void MoveBy(const Location& delta_loc);
 	void Grow();
+	void RestartInit(Location loc);
 
 	bool collisionTest(Board& brd, Apple& apple);
 
