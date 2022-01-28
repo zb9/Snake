@@ -50,6 +50,8 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	const float dt = ft.Mark();
+
 	// Motion 
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
@@ -108,7 +110,8 @@ void Game::UpdateModel()
 	}
 }
 void Game::ComposeFrame()
-{	
+{
+
 	// Entity Loading
 	if (!brd.GetGameOver())
 	{

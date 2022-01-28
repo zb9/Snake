@@ -28,6 +28,7 @@
 #include "Snake.h"
 #include "Apple.h"
 #include "SpriteCodex.h"
+#include "FrameTimer.h"
 #include <random>
 
 class Game
@@ -52,6 +53,8 @@ private:
 	Location loc;
 	Location delta_loc;
 	SpriteCodex sprite;
+
+	FrameTimer ft;
 
 	std::mt19937 rng;
 	std::uniform_int_distribution<int> loc_xDist;
