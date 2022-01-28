@@ -60,10 +60,10 @@ private:
 	std::uniform_int_distribution<int> loc_xDist;
 	std::uniform_int_distribution<int> loc_yDist;
 
-	int maxTicks = 20;
+	float secondsPerTick = 0.5f;
+	float currentTick = secondsPerTick;
+
 	static constexpr int maxApples = 790; 
-	
-	int currentTick = maxTicks;
 	int currentApples = 0;
 
 	// 0 - Up , 1 - Right, 2 - Down, 3 - Right

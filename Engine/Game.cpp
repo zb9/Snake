@@ -50,8 +50,6 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	const float dt = ft.Mark();
-
 	// Motion 
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
@@ -94,7 +92,7 @@ void Game::UpdateModel()
 	if (currentDirection == 3) { delta_loc = { -1, 0 }; }
 
 	// Tick operations
-	--currentTick;
+	currentTick -= ft.Mark();
 
 	if (currentTick <= 0)
 	{
@@ -103,10 +101,18 @@ void Game::UpdateModel()
 		//{
 		//	    snake.Grow();
 		//}
-		if (snake.collisionTest(brd, apple[currentApples])) { snake.Grow(); ++currentApples; if (maxTicks >= 5) { --maxTicks; } }
+		if (snake.collisionTest(brd, apple[currentApples])) 
+		{ 
+			snake.Grow(); 
+			++currentApples; 
+			if (secondsPerTick > 0.08) 
+			{ 
+				secondsPerTick *= 0.9;
+			} 
+		}
 		snake.MoveBy(delta_loc);
 		motionDbn = false;
-		currentTick = maxTicks;
+		currentTick = secondsPerTick;
 	}
 }
 void Game::ComposeFrame()
